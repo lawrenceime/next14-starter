@@ -3,12 +3,18 @@
 import React,{useState} from 'react'
 import styles from './links.module.css'
 import NavLink from './navLink/navLink'
+import Image from 'next/image'
 
 const links = [
     {
         route:'Home',
         path : '/'
     },
+
+    {
+      route:'About',
+      path : '/about'
+  },
     {
         route:'Contact',
         path : '/contact'
@@ -46,17 +52,18 @@ const Links = () => {
           ) : (
             <NavLink item={{route:"Login" , path:"/login"}}/>
             )
-          }
+          }                               
     </div>
-    <button className={styles.menuButton} onClick={handleOpen} >Menu</button>
+   
+    <Image src='/menu.png' alt='menu icon' width={30} height={30} onClick={handleOpen} className={styles.menuImg}/>
     {
       open && <div className={styles.mobileLinks}>
         {links.map(link => (
             <NavLink item={link} key={link.route}/>
         ))}
       </div>
-    }
-  </div>
+    }  
+  </div> 
   )
 }
 
