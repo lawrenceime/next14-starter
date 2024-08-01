@@ -2,14 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import styles from './blog.module.css';
 import PostCard from '@/components/postCard/PostCard';
+import { getPosts } from '@/lib/data';
 
-const getData = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts', { cache: 'no-store' });
-  if (!res.ok) {
-    throw new Error('Something went wrong');
-  }
-  return res.json();
-};
+// FETCH DATA WITH AN API
+// const getData = async () => {
+//   const res = await fetch('https://jsonplaceholder.typicode.com/posts', { cache: 'no-store' });
+//   if (!res.ok) {
+//     throw new Error('Something went wrong');
+//   }
+//   return res.json();
+// };
 
 const BlogPage = () => {
   const [posts, setPosts] = useState([]);
@@ -17,15 +19,21 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getData();
+        // FETCH DATA WITH AN API
+        // const data = await getData();
+
+        // FETCH DATA WITHOUT AN API
+        const data = await getPosts()
         setPosts(data);
-        console.log(setPosts);
+       
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
+
+    
   }, []);
 
   return (
@@ -40,3 +48,11 @@ const BlogPage = () => {
 };
 
 export default BlogPage;
+
+
+
+
+
+
+
+
