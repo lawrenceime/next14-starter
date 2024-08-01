@@ -1,5 +1,5 @@
-'use client'
-import React, { useEffect, useState } from 'react';
+
+import React from 'react';
 import styles from './blog.module.css';
 import PostCard from '@/components/postCard/PostCard';
 import { getPosts } from '@/lib/data';
@@ -13,28 +13,29 @@ import { getPosts } from '@/lib/data';
 //   return res.json();
 // };
 
-const BlogPage = () => {
-  const [posts, setPosts] = useState([]);
+const BlogPage = async() => {
+  // const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // FETCH DATA WITH AN API
-        // const data = await getData();
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       // FETCH DATA WITH AN API
+  //       // const data = await getData();
 
-        // FETCH DATA WITHOUT AN API
-        const data = await getPosts()
-        setPosts(data);
+  //       // FETCH DATA WITHOUT AN API
+  //       const data = await getPosts()
+  //       setPosts(data);
+  const posts = await getPosts()
        
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
 
-    fetchData();
+  //   fetchData();
 
     
-  }, []);
+  // }, []);
 
   return (
     <div className={styles.container}>
