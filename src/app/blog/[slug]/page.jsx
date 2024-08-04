@@ -6,16 +6,27 @@ import { getPost } from '@/lib/data';
  
 
 // FETCH DATA WITH AN API
-  // const getData = async (slug) => {
-  //   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`, {cache:'no-store'});
-  //   console.log(res);
-  //   if (!res.ok) {
-  //     throw new Error('Something went wrong');
-  //   } 
+  const getData = async (slug) => {
+    const res = await fetch(`https://localhost:3000/api/blog/${slug}`, {cache:'no-store'});
+    console.log(res);
+    if (!res.ok) {
+      throw new Error('Something went wrong');
+    } 
 
-  //   return res.json();
-  // };
+    return res.json();
+  };
   
+  export const generateMetadata = async({params}) => {
+    const {slug} = params
+
+    const post = await getPost(slug)
+
+    return {
+
+      title : post.title,
+      description : post.desc
+    }
+  }
 
   const SinglePostPage = async({params}) => {
     
@@ -23,10 +34,10 @@ import { getPost } from '@/lib/data';
 
     const {slug} = params 
     // FETCH DATA WITH AN API
-    // const post = await getData(slug);
+    const post = await getData(slug);
 
       // FETCH DATA WITHOUT AN API
-      const post = await getPost(slug)
+      // const post = await getPost(slug)
       console.log(post);
 
 
@@ -34,18 +45,18 @@ import { getPost } from '@/lib/data';
     return (
       <div className={styles.container}>
         {post.img && <div className={styles.imgContainer}>
-          <Image src='https://images.pexels.com/photos/27019187/pexels-photo-27019187/free-photo-of-a-man-carrying-his-surfboard-into-the-ocean.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load' alt='' fill className={styles.img} />
+          <Image src={post.img} alt='' fill className={styles.img} />
         </div>}
         <div className={styles.textContainer}>
           <h1 className={styles.title}>{post.title}</h1>
           <div className={styles.detail}>
-            <Image className={styles.avatar} src='https://images.pexels.com/photos/27019187/pexels-photo-27019187/free-photo-of-a-man-carrying-his-surfboard-into-the-ocean.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load ' alt='' width={50} height={50}/>
+            
             {post && <Suspense fallback={<div>Loading</div>}>
             <PostUser userId={post.userId}/>
             </Suspense>}
             <div className={styles.detailText}>
               <span className={styles.detailTitle}>Published</span>
-              <span className={styles.detailValue}>01.01.2024</span>
+              <span className={styles.detailValue}>{post.createdAt.toString().slice(4,16)}</span>
             </div>
           </div>
           <div className={styles.content}>

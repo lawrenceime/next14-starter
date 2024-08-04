@@ -5,7 +5,8 @@ const HydrationTest = () => {
    
 
   return (
-    <div>{a}</div>
+    // <div>{a}</div>
+    <div></div>
   )
 }
 

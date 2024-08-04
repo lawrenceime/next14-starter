@@ -1,4 +1,4 @@
-'use client'
+
 import Image from "next/image";
 import styles from "./contact.module.css";
 // import {useState , useEffect} from 'react'
@@ -7,6 +7,11 @@ import styles from "./contact.module.css";
 
 
 // const HydrationTestNoSSR = dynamic(()=> import('@/components/HydrationTest') , {ssr:false})
+
+export const metadata = {
+  title: 'Contact Page',
+  description: 'Next.js starter app contact description',
+}
 
 const ContactPage = () => {
 

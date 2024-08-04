@@ -8,7 +8,7 @@ export const metadata = {
 
 
 const AboutPage = () => {
- console.log("let's check where it works ");
+
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>

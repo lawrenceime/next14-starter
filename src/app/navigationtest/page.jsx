@@ -9,7 +9,7 @@ const NavigationTest = () => {
   // CLIENT SIDE NAVIGATION
   
   const router = useRouter();
-  const pathname = usePathname();
+  // const pathname = usePathname();
   const searchParams = useSearchParams()
 
   const q = searchParams.get("q")

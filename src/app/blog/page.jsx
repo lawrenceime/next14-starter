@@ -5,37 +5,22 @@ import PostCard from '@/components/postCard/PostCard';
 import { getPosts } from '@/lib/data';
 
 // FETCH DATA WITH AN API
-// const getData = async () => {
-//   const res = await fetch('https://jsonplaceholder.typicode.com/posts', { cache: 'no-store' });
-//   if (!res.ok) {
-//     throw new Error('Something went wrong');
-//   }
-//   return res.json();
-// };
+const getData = async () => {
+  const res = await fetch('http://localhost:3000/api/blog', {next:{revalidate:3600}} );
+  if (!res.ok) {
+    throw new Error('Something went wrong');
+  }       
+  return res.json();
+};
 
 const BlogPage = async() => {
-  // const [posts, setPosts] = useState([]);
+  
+      // FETCH DATA WITH AN API
+        const posts = await getData();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       // FETCH DATA WITH AN API
-  //       // const data = await getData();
+ 
 
-  //       // FETCH DATA WITHOUT AN API
-  //       const data = await getPosts()
-  //       setPosts(data);
-  const posts = await getPosts()
-       
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
 
-  //   fetchData();
-
-    
-  // }, []);
 
   return (
     <div className={styles.container}>
