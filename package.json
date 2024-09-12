@@ -12,6 +12,7 @@
     "aws4": "^1.13.0",
     "mongoose": "^8.5.2",
     "next": "14.0.4",
+    "next-auth": "^5.0.0-beta.3",
     "react": "^18",
     "react-dom": "^18"
   },

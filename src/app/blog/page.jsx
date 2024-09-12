@@ -1,44 +1,38 @@
-
 import React from 'react';
 import styles from './blog.module.css';
 import PostCard from '@/components/postCard/PostCard';
 import { getPosts } from '@/lib/data';
+import { getApiUrl } from '@/lib/getApiUrl';
 
-// FETCH DATA WITH AN API
 const getData = async () => {
-  const res = await fetch('http://localhost:3000/api/blog', {next:{revalidate:3600}} );
-  if (!res.ok) {
-    throw new Error('Something went wrong');
-  }       
-  return res.json();
+    const url = getApiUrl(`/api/blog`);
+    const res = await fetch(url, { next: { revalidate: 3600 } });
+  
+    // console.log(res);
+    try {
+        if (!res.ok) {
+            throw new Error('Something went wrong');
+        }
+        return res.json();
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
 };
 
-const BlogPage = async() => {
-  
-      // FETCH DATA WITH AN API
-        const posts = await getData();
+const BlogPage = async () => {
+    const posts = await getData();
+    // console.log(posts);
 
- 
-
-
-
-  return (
-    <div className={styles.container}>
-      {posts.map((post) => (
-        <div className={styles.post} key={post.id}>
-          <PostCard post={post} />
+    return (
+        <div className={styles.container}>
+            {Array.isArray(posts) && posts.map((post) => (
+                <div className={styles.post} key={post._id}>
+                    <PostCard post={post} />
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
+    );
 };
 
 export default BlogPage;
-
-
-
-
-
-
-
-
