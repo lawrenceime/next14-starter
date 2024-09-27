@@ -29,10 +29,6 @@ const links = [
 
 
 const Links = ({session}) => {
-  
-
-  const isAdmin = true
-
 
   const [open , setOpen] = useState(false)
 

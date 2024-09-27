@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "aws4": "^1.13.0",
+    "bcrypt": "^5.1.1",
     "mongoose": "^8.5.2",
     "next": "14.0.4",
     "next-auth": "^5.0.0-beta.3",
